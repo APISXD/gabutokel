@@ -25,14 +25,16 @@ function checkSaldo() {
 }
 
 function riwayatSaldo() {
-  let historyOutput = "Riwayat Transaksi:\n";
-  riwayat.forEach((transaction, index) => {
-    historyOutput += `${index + 1}. ${transaction.date}/${transaction.month}: ${
-      transaction.description
-    } (${transaction.amount})\n`;
-  });
-  updateOutput(historyOutput);
+    // Mengurutkan riwayat transaksi berdasarkan tanggal (dari yang terbaru)
+    riwayat.sort((a, b) => new Date(b.date + '/' + b.month) - new Date(a.date + '/' + a.month));
+
+    let historyOutput = "Riwayat Transaksi:\n";
+    riwayat.forEach((transaction, index) => {
+        historyOutput += `${index + 1}. ${transaction.date}/${transaction.month}: ${transaction.description} (${formatIDR(transaction.amount)})\n`;
+    });
+    updateOutput(historyOutput);
 }
+
 
 function kurangiSaldo() {
   let kurang = parseFloat(document.getElementById("jumlahSaldo").value);
@@ -134,14 +136,16 @@ function checkSaldo() {
 }
 
 function riwayatSaldo() {
-  let historyOutput = "Riwayat Transaksi:\n";
-  riwayat.forEach((transaction, index) => {
-    historyOutput += `${index + 1}. ${transaction.date}/${transaction.month}: ${
-      transaction.description
-    } (${formatIDR(transaction.amount)})\n`;
-  });
-  updateOutput(historyOutput);
+    // Mengurutkan riwayat transaksi berdasarkan tanggal (dari yang terbaru)
+    riwayat.sort((a, b) => new Date(b.date + '/' + b.month) - new Date(a.date + '/' + a.month));
+
+    let historyOutput = "Riwayat Transaksi:\n";
+    riwayat.forEach((transaction, index) => {
+        historyOutput += `${index + 1}. ${transaction.date}/${transaction.month}: ${transaction.description} (${formatIDR(transaction.amount)})\n`;
+    });
+    updateOutput(historyOutput);
 }
+
 
 function resetSaldo() {
   saldo = 0;
